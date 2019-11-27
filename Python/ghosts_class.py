@@ -31,6 +31,7 @@ class Enemy:
     def draw(self):
         pygame.draw.circle(self.app.screen, self.colour, (int(self.pos.x), int(self.pos.y)), self.radius)
 
+    # Determains what speed the diffrent ghostes will have depending on personality
     def set_speed(self):
         if self.personality in ["speedy", "scared"]:
             speed = 2
@@ -38,6 +39,7 @@ class Enemy:
             speed = 1
         return speed
 
+    # Determains the route the ghostes will take towards pacman
     def setTarget(self):
         if self.personality == "speedy" or self.personality == "slow":
             return self.app.player.grid_pos
@@ -112,6 +114,7 @@ class Enemy:
                     shortest.insert(0, step["Current"])
         return shortest
 
+    # Set a random direction
     def get_random_direction(self):
         while True:
             number = random.randint(-2, 1)
@@ -128,9 +131,11 @@ class Enemy:
                 break
         return vec(x_dir, y_dir)
 
+    # Get current position
     def get_pos(self):
         return vec((self.grid_pos.x * self.app.cell_width) + buffer // 2 + self.app.cell_width // 2, (self.grid_pos.y * self.app.cell_height) + buffer // 2 + self.app.cell_height // 2)
 
+    # Set clour of ghostes
     def setColour(self):
         if self.number == 0:
             return (43, 78, 203)
@@ -141,6 +146,7 @@ class Enemy:
         if self.number == 3:
             return (215, 159, 33)
 
+    # Sets personality of ghostes
     def set_personality(self):
         if self.number == 0:
             return "speedy"

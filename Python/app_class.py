@@ -24,6 +24,7 @@ class App:
         self.player = Player(self, vec(self.p_pos))
         self.make_enemies()
 
+    # Starts the actual game
     def run(self):
         while self.running:
             if self.state == 'start':
@@ -45,7 +46,6 @@ class App:
         sys.exit()
 
     # Helper
-
     def draw_text(self, words, screen, pos, size, colour, font_name, centered=False):
         font = pygame.font.SysFont(font_name, size)
         text = font.render(words, False, colour)
@@ -105,8 +105,7 @@ class App:
                         self.coins.append(vec(xidx, yidx))
         self.state = "playing"
 
-    # START
-
+    # Start
     def start_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -124,8 +123,7 @@ class App:
         self.draw_text('HIGH SCORE', self.screen, [4, 0], text_size, (255, 255, 255), font)
         pygame.display.update()
 
-    # PLAYING 
-
+    # Playing 
     def playing_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -179,7 +177,6 @@ class App:
             pygame.draw.circle(self.screen, (124, 123, 7), (int(coin.x * self.cell_width) + self.cell_width // 2 + buffer // 2, int(coin.y * self.cell_height) + self.cell_height // 2 + buffer // 2), 5)
 
     # GAME OVER
-
     def game_over_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
